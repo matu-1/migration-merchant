@@ -20,10 +20,12 @@ async function createProducts(id: number, data: Buffer) {
         Authorization: `Bearer ${ACCESS_TOKEN}`,
       },
     });
-    console.log(`res:${id}`, res.data?.message);
+    console.log(`res:(Id ${id})`, res.data?.message);
     return res.data;
   } catch (error) {
-    console.log(`Error:${id}`, error);
+    const message =
+      (error as any).response?.data?.message ?? (error as any).message;
+    console.log(`Error:(Id ${id})`, message);
   }
 }
 
